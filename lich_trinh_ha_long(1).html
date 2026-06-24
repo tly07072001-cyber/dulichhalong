@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lịch trình đi Hạ Long 27/6 - 29/6</title>
+  <style>
+    :root {
+      --bg: #f3fbff;
+      --card: #ffffff;
+      --primary: #0077b6;
+      --primary-dark: #023e8a;
+      --accent: #ffb703;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #dbeafe;
+      --soft: #e0f2fe;
+      --danger-soft: #fff7ed;
+      --danger: #c2410c;
+      --green-soft: #ecfdf5;
+      --green: #047857;
+      --shadow: 0 14px 35px rgba(2, 62, 138, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, #caf0f8 0, transparent 28%),
+        linear-gradient(135deg, #f3fbff 0%, #eef8ff 48%, #fff9ec 100%);
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 18px 44px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 34px 28px;
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -70px;
+      bottom: -95px;
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 0;
+      font-size: 17px;
+      opacity: 0.94;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 2px;
+    }
+
+    .stat span {
+      font-size: 13px;
+      opacity: 0.92;
+    }
+
+    .section-title {
+      margin: 32px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary-dark);
+    }
+
+    .section-title .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 7px rgba(255, 183, 3, 0.18);
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .overview-card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(2, 62, 138, 0.07);
+    }
+
+    .overview-card h3 {
+      margin: 0 0 8px;
+      color: var(--primary-dark);
+    }
+
+    .overview-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .day-card {
+      margin-top: 18px;
+      border-radius: 26px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .day-header {
+      padding: 22px 24px;
+      background: linear-gradient(90deg, #e0f2fe, #fff7ed);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .day-header h2 {
+      margin: 0;
+      color: var(--primary-dark);
+      font-size: 25px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: white;
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid #bfdbfe;
+    }
+
+    .timeline {
+      padding: 8px 22px 22px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 16px;
+      position: relative;
+      padding: 18px 0;
+    }
+
+    .item:not(:last-child) {
+      border-bottom: 1px dashed #dbeafe;
+    }
+
+    .time {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 17px;
+      white-space: nowrap;
+    }
+
+    .content h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #111827;
+    }
+
+    .content p {
+      margin: 0;
+      color: #4b5563;
+    }
+
+    .location {
+      display: inline-block;
+      margin-top: 9px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .option {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: var(--green-soft);
+      border-left: 5px solid var(--green);
+      color: #064e3b;
+    }
+
+    .pending {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: var(--danger-soft);
+      border-left: 5px solid var(--danger);
+      color: #7c2d12;
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .note-card {
+      border-radius: 22px;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(2, 62, 138, 0.07);
+    }
+
+    .note-card h3 {
+      margin-top: 0;
+      color: var(--primary-dark);
+    }
+
+    ul {
+      padding-left: 21px;
+      margin: 10px 0 0;
+    }
+
+    li {
+      margin: 7px 0;
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 20px;
+      border-radius: 20px;
+      background: #0f172a;
+      color: #e5e7eb;
+      text-align: center;
+    }
+
+    .print-btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #1f2937;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+    }
+
+    @media (max-width: 780px) {
+      .hero-grid,
+      .overview,
+      .notes {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 28px 20px;
+      }
+
+      .item {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+
+      .time {
+        font-size: 16px;
+      }
+
+      .day-header {
+        padding: 20px;
+      }
+
+      .timeline {
+        padding: 5px 18px 20px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .page {
+        max-width: none;
+        padding: 0;
+      }
+
+      .hero,
+      .day-card,
+      .overview-card,
+      .note-card,
+      .footer {
+        box-shadow: none;
+      }
+
+      .print-btn {
+        display: none;
+      }
+
+      .day-card {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">A5 Trip • Hạ Long</span>
+        <h1>Lịch trình đi Hạ Long</h1>
+        <p class="subtitle">
+          Kế hoạch 3 ngày 2 đêm từ 27/6 đến 29/6: công viên nước, buffet, du thuyền ra vịnh, tắm biển, ăn uống và vui chơi quanh khu trung tâm.
+        </p>
+
+        <div class="hero-grid">
+          <div class="stat">
+            <strong>3 ngày</strong>
+            <span>27/6 - 29/6</span>
+          </div>
+          <div class="stat">
+            <strong>Hạ Long</strong>
+            <span>Biển, vịnh, Sun World</span>
+          </div>
+          <div class="stat">
+            <strong>11:00</strong>
+            <span>Xuất phát tại HVQY</span>
+          </div>
+          <div class="stat">
+            <strong>11:30</strong>
+            <span>Check-out ngày cuối</span>
+          </div>
+        </div>
+
+        <button class="print-btn" onclick="window.print()">In / lưu PDF lịch trình</button>
+      </div>
+    </section>
+
+    <h2 class="section-title"><span class="dot"></span>Tổng quan chuyến đi</h2>
+    <section class="overview">
+      <div class="overview-card">
+        <h3>Ngày 1 • 27/6</h3>
+        <p>Xuất phát, check-in nơi nghỉ, chơi công viên nước Sun World, buffet Sen Á Đông và dạo khu trung tâm.</p>
+      </div>
+      <div class="overview-card">
+        <h3>Ngày 2 • 28/6</h3>
+        <p>Chạy bộ/tắm biển buổi sáng, lên du thuyền ra vịnh, tối nhậu bờ biển và chơi tự do.</p>
+      </div>
+      <div class="overview-card">
+        <h3>Ngày 3 • 29/6</h3>
+        <p>7h ra biển tắm, về Lola's House ăn sáng, 11h30 check-out, ăn nhẹ rồi quay lại Hà Nội.</p>
+      </div>
+    </section>
+
+    <section class="day-card">
+      <div class="day-header">
+        <h2>Ngày 1 — Thứ Sáu, 27/6</h2>
+        <span class="tag">Chủ đề: Di chuyển • Check-in • Sun World</span>
+      </div>
+      <div class="timeline">
+        <div class="item">
+          <div class="time">11:00</div>
+          <div class="content">
+            <h3>Xuất phát</h3>
+            <p>Các đồng chí chủ động ăn uống trước, sau đó tập trung đúng giờ để xuất phát.</p>
+            <span class="location">Địa điểm: HVQY</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">13:30</div>
+          <div class="content">
+            <h3>Check-in nơi nghỉ</h3>
+            <p>Cất đồ đạc, ổn định phòng và chuẩn bị đồ đi bơi.</p>
+            <span class="location">Địa điểm: Lola's House, Ha Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">14:00</div>
+          <div class="content">
+            <h3>Chơi công viên nước Sun World</h3>
+            <p>Tham gia các trò chơi, chụp ảnh lưu niệm tại cổng và vui chơi tự do. Dự kiến kết thúc khoảng 18:00.</p>
+            <span class="location">Địa điểm: Công viên nước Sun World Hạ Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">18:00</div>
+          <div class="content">
+            <h3>Về nơi nghỉ tắm rửa</h3>
+            <p>Di chuyển về nơi nghỉ, tắm rửa, thay quần áo. Có thể ra biển ngắm cảnh và chụp ảnh.</p>
+            <span class="location">Địa điểm: Lola's House, Ha Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">19:30</div>
+          <div class="content">
+            <h3>Ăn buffet tối</h3>
+            <p>Tập trung di chuyển tới nhà hàng để dùng bữa tối.</p>
+            <span class="location">Địa điểm: Buffet Sen Á Đông</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">22:00</div>
+          <div class="content">
+            <h3>Chơi tối quanh trung tâm</h3>
+            <p>Dùng bữa xong, di chuyển về khu trung tâm. Có thể đi dạo, uống nước dừa, cà phê, thăm thú phố phường hoặc mua bia về đêm xem bóng.</p>
+            <div class="pending">Mục cần góp ý thêm: hoạt động buổi tối sau buffet.</div>
+            <span class="location">Địa điểm: Khu trung tâm Hạ Long / quanh Lola's House, Ha Long</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="day-card">
+      <div class="day-header">
+        <h2>Ngày 2 — Thứ Bảy, 28/6</h2>
+        <span class="tag">Chủ đề: Biển • Du thuyền • Ăn nhậu</span>
+      </div>
+      <div class="timeline">
+        <div class="item">
+          <div class="time">05:15</div>
+          <div class="content">
+            <h3>Phương án 1: Dậy sớm chạy bộ ra biển</h3>
+            <p>Báo thức, tập trung chạy bộ ra biển, ngắm bình minh, chụp ảnh rồi quay về nơi nghỉ ăn sáng. Sau đó thay đồ ra biển tắm.</p>
+            <div class="option">Phù hợp nếu cả nhóm dậy được sớm và muốn có ảnh bình minh.</div>
+            <span class="location">Địa điểm: Bãi biển gần nơi nghỉ</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">07:30 - 08:00</div>
+          <div class="content">
+            <h3>Phương án 2: Dậy muộn hơn</h3>
+            <p>Dậy ăn sáng, sau đó ra biển tắm và chụp ảnh luôn.</p>
+            <div class="option">Phù hợp nếu tối ngày 1 chơi muộn hoặc cả nhóm cần ngủ thêm.</div>
+            <span class="location">Địa điểm: Lola's House, Ha Long / bãi biển</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">10:00</div>
+          <div class="content">
+            <h3>Chuẩn bị lên thuyền</h3>
+            <p>Quay về nơi nghỉ, tắm nhanh nếu cần, thay đồ và chuẩn bị tư trang để lên du thuyền.</p>
+            <span class="location">Địa điểm: Lola's House, Ha Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">11:00</div>
+          <div class="content">
+            <h3>Lên du thuyền ra vịnh</h3>
+            <p>Ra vịnh chơi, tham quan, chụp ảnh và tham gia các hoạt động trên du thuyền theo lịch thực tế.</p>
+            <span class="location">Địa điểm: Du thuyền / Vịnh Hạ Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">18:00</div>
+          <div class="content">
+            <h3>Quay về đất liền</h3>
+            <p>Về lại nơi nghỉ, tắm rửa và thay quần áo chuẩn bị đi ăn tối.</p>
+            <span class="location">Địa điểm: Lola's House, Ha Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">19:30</div>
+          <div class="content">
+            <h3>Nhậu bên bờ biển</h3>
+            <p>Cả nhóm tập trung đi ăn nhậu buổi tối.</p>
+            <div class="pending">Địa điểm đang chốt.</div>
+            <span class="location">Địa điểm: Bờ biển Hạ Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">22:30</div>
+          <div class="content">
+            <h3>Chơi tự do buổi tối</h3>
+            <p>Quay về khu trung tâm quanh chỗ nghỉ. Có thể đi uống cà phê, dạo biển, xem bóng hoặc nghỉ sớm nếu say/quá mệt.</p>
+            <div class="pending">Mục cần góp ý thêm: hoạt động sau nhậu.</div>
+            <span class="location">Địa điểm: Khu trung tâm / quanh Lola's House, Ha Long</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="day-card">
+      <div class="day-header">
+        <h2>Ngày 3 — Chủ Nhật, 29/6</h2>
+        <span class="tag">Chủ đề: Tắm biển • Check-out • Về Hà Nội</span>
+      </div>
+      <div class="timeline">
+        <div class="item">
+          <div class="time">07:00</div>
+          <div class="content">
+            <h3>Ra biển tắm buổi sáng</h3>
+            <p>Cả nhóm dậy ra biển tắm thêm một lượt, chụp ảnh nhẹ rồi quay về Lola's House ăn sáng.</p>
+            <span class="location">Địa điểm: Bãi biển gần Lola's House, Ha Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">08:30 - 11:30</div>
+          <div class="content">
+            <h3>Ăn sáng, nghỉ ngơi và chuẩn bị check-out</h3>
+            <p>Ăn sáng tại Lola's House, thu dọn đồ, kiểm tra phòng và chuẩn bị trả phòng.</p>
+            <span class="location">Địa điểm: Lola's House, Ha Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">11:30</div>
+          <div class="content">
+            <h3>Check-out</h3>
+            <p>Làm thủ tục trả phòng.</p>
+            <span class="location">Địa điểm: Lola's House, Ha Long</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="time">Sau 11:30</div>
+          <div class="content">
+            <h3>Ăn nhẹ rồi quay lại Hà Nội</h3>
+            <p>Cả nhóm ăn nhẹ, bình dân, sau đó lên xe quay lại Hà Nội.</p>
+            <span class="location">Địa điểm: Hạ Long → Hà Nội</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="notes">
+      <div class="note-card">
+        <h3>Việc cần chuẩn bị</h3>
+        <ul>
+          <li>Đồ bơi, khăn tắm, dép, túi chống nước.</li>
+          <li>Kem chống nắng, kính râm, mũ/nón.</li>
+          <li>Đồ thay buổi tối, sạc dự phòng, giấy tờ cá nhân.</li>
+          <li>Chuẩn bị tinh thần dậy sớm nếu chọn phương án ngắm bình minh ngày 2.</li>
+        </ul>
+      </div>
+
+      <div class="note-card">
+        <h3>Mục cần chốt thêm</h3>
+        <ul>
+          <li>Hoạt động tối ngày 1 sau buffet.</li>
+          <li>Địa điểm nhậu tối ngày 2.</li>
+          <li>Quán ăn nhẹ trước khi về Hà Nội.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <strong>Kết thúc chuyến đi Hạ Long 27/6 - 29/6</strong>
+      <br />
+      Chúc cả đoàn đi chơi vui vẻ, đúng giờ và có nhiều ảnh đẹp!
+    </footer>
+  </main>
+</body>
+</html>
